@@ -21,6 +21,7 @@ Our task is to:
 ```
 
 *API Development*
+
 Developed a RESTful API to manage the recipe data, including endpoints for creating and
 querying recipes.
 
@@ -64,6 +65,7 @@ b) GET /recipes/top
 - Returned a JSON object containing the list of filtered and sorted recipe objects under a data key.
 
 *Request URL*
+
 GET /recipes/top?limit=2
 http://localhost:8080/recipes/top?page=0&limit=2
   
