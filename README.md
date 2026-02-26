@@ -104,4 +104,27 @@ http://localhost:8080/recipes/top?page=0&limit=2
   "page size": 2
 }
 ```
+*Steps to run project locally:*
 
+Step 1: Clone the Repository
+- git clone https://github.com/Harshitha-965/Securin-Assessment.git
+- cd recipe
+
+Step 2: Set Up MySQL Database
+- CREATE DATABASE recipes;
+
+Step 3: Configure Database in Application
+- Open src/main/resources/application.properties and update the password with your_password. 
+
+Step 4: Build the Project
+- For Mac/Linux: ./mvnw clean install
+- For Windows: mvnw.cmd clean install
+
+Step 5: Run the Application
+- mvn spring-boot:run
+
+Step 6: Access the Application
+- http://localhost:8080
+
+Swagger API Documentation:
+- http://localhost:8080/swagger-ui/index.html
