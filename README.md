@@ -7,7 +7,8 @@ Our task is to:
 3. Develop a REST API to manage and query recipes.
    
 *Database Schema for recipes table:*
-● id: INT (Primary Key, Auto-increment) - Unique identifier for the recipe.
+```
+id: INT (Primary Key, Auto-increment) - Unique identifier for the recipe.
 ● title: VARCHAR - Name of the recipe
 ● cuisine: VARCHAR - Cuisine type
 ● rating: FLOAT - User rating of the recipe
@@ -17,6 +18,7 @@ Our task is to:
 ● description: TEXT - Detailed description of the recipe
 ● nutrients: JSON - Nested nutritional information
 ● serves: VARCHAR - Number of servings
+```
 
 *API Development*
 Developed a RESTful API to manage the recipe data, including endpoints for creating and
@@ -28,7 +30,8 @@ a) POST /recipes
 - Return the complete saved recipe object, including the auto-generated id and calculated total_time.
 
   *Request body*
-  ```{
+  ```
+  {
   "id": 0,
   "title": "string",
   "cuisine": "string",
@@ -41,7 +44,8 @@ a) POST /recipes
   }
   ```
   *Response body*
-  ```{
+  ```
+  {
     "id": 8251,
     "title": "string",
     "cuisine": "string",
@@ -63,7 +67,8 @@ a) POST /recipes
   GET /recipes/top?limit=2 - http://localhost:8080/recipes/top?page=0&limit=2
   
   *Response Body*
-  ```{
+  ```
+  {
   "data": [
     {
       "id": 4608,
@@ -96,5 +101,3 @@ a) POST /recipes
   "page size": 2
 }
 ```
-
-  
