@@ -12,8 +12,11 @@ import com.securin.recipe.repository.RecipeRepository;
 public class RecipeService {
     @Autowired
     private RecipeRepository recipeRepository;
+    public Recipe createRecipe(Recipe r){
+        return recipeRepository.save(r);
+    }
     public Page<Recipe> getAllRecipes(Pageable pageable){
         return recipeRepository.findAll(pageable);
     }
-    
+
 }

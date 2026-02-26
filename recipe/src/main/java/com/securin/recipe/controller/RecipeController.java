@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +21,7 @@ import com.securin.recipe.model.Recipe;
 import com.securin.recipe.service.RecipeService;
 
 @RestController
-@RequestMapping("/recipes/top")
+@RequestMapping("/recipes")
 public class RecipeController {
     @Autowired
     private RecipeService recipeService;
@@ -37,7 +39,13 @@ public class RecipeController {
         return PageRequest.of(page, limit,Sort.by("rating").descending());
     }
 
-    @GetMapping
+    @PostMapping
+    public Recipe createRecipes(@RequestBody Recipe r){
+        Integer totalTime=r.getPrepTime()+r.getCookTime();
+        r.setTotalTime(totalTime);
+        return recipeService.createRecipe(r);
+    }
+    @GetMapping("/top")
     public ResponseEntity<?> getAllRecipes(
         @RequestParam(defaultValue="0")int page,
         @RequestParam(defaultValue="5")int limit
