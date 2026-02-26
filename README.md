@@ -8,7 +8,7 @@ Our task is to:
    
 *Database Schema for recipes table:*
 ```
-id: INT (Primary Key, Auto-increment) - Unique identifier for the recipe.
+● id: INT (Primary Key, Auto-increment) - Unique identifier for the recipe.
 ● title: VARCHAR - Name of the recipe
 ● cuisine: VARCHAR - Cuisine type
 ● rating: FLOAT - User rating of the recipe
@@ -58,15 +58,16 @@ a) POST /recipes
     "serves": "string"
   }
   ```
-  b) GET /recipes/top
-  - Retrieved a list of the top-rated recipes.
-  - Queried the database and return recipes sorted by rating in descending order, restricted by the limit parameter.
-  - Returned a JSON object containing the list of filtered and sorted recipe objects under a data key.
+b) GET /recipes/top
+- Retrieved a list of the top-rated recipes.
+- Queried the database and return recipes sorted by rating in descending order, restricted by the limit parameter.
+- Returned a JSON object containing the list of filtered and sorted recipe objects under a data key.
 
-  *Request URL*
-  GET /recipes/top?limit=2 - http://localhost:8080/recipes/top?page=0&limit=2
+*Request URL*
+GET /recipes/top?limit=2
+http://localhost:8080/recipes/top?page=0&limit=2
   
-  *Response Body*
+*Response Body*
   ```
   {
   "data": [
@@ -101,3 +102,4 @@ a) POST /recipes
   "page size": 2
 }
 ```
+
