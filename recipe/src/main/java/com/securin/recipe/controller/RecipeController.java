@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,13 +17,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.securin.recipe.model.Recipe;
+import com.securin.recipe.model.RecipeRequest;
 import com.securin.recipe.service.RecipeService;
 
 @RestController
 @RequestMapping("/recipes")
 public class RecipeController {
-    @Autowired
-    private RecipeService recipeService;
+    private final RecipeService recipeService;
+
+    RecipeController(RecipeService recipeService) {
+        this.recipeService = recipeService;
+    }
 
     public Map<String,Object> buildPageResponse(Page<Recipe> page){
         Map<String,Object> response=new LinkedHashMap<>();
@@ -40,9 +43,12 @@ public class RecipeController {
     }
 
     @PostMapping
-    public Recipe createRecipes(@RequestBody Recipe r){
-        Integer totalTime=r.getPrepTime()+r.getCookTime();
-        r.setTotalTime(totalTime);
+    public Recipe createRecipes(@RequestBody RecipeRequest r){
+        if (r.getPrepTime() == null || r.getCookTime() == null) {
+            throw new IllegalArgumentException("prepTime and cookTime are required");
+        }
+
+        r.setTotalTime(r.getPrepTime() + r.getCookTime());
         return recipeService.createRecipe(r);
     }
     @GetMapping("/top")

@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -19,8 +18,7 @@ import com.securin.recipe.model.Recipe;
 
 @Component
 public class DataLoader implements CommandLineRunner {
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
     private final ObjectMapper mapper=new ObjectMapper();
 
     private static final int BATCH_SIZE=1000;
@@ -29,6 +27,10 @@ public class DataLoader implements CommandLineRunner {
                                             "(title,cuisine,rating,prep_time,cook_time,"+
                                             "total_time,description,nutrients,serves)"+
                                             "VALUES(?,?,?,?,?,?,?,?,?)";
+
+    DataLoader(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
     @Override
     public void run(String... args){
         try{
